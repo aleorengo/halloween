@@ -165,7 +165,7 @@ body{background-color:#100e0f;background-image:linear-gradient(#100e0fad,#100e0f
 /* Optional ritual pages keep inspiration off the compact invitation. */
 [hidden]{display:none!important}
 .ritual{position:relative;transition:border-color .2s,background .2s}
-.ritual-arrow{position:absolute;right:8px;top:8px;color:var(--red);width:14px;height:14px;pointer-events:none}
+.ritual-arrow{position:absolute;right:8px;bottom:8px;color:var(--red);width:14px;height:14px;pointer-events:none}
 .ritual-arrow svg{display:block;width:100%;height:100%}
 .ritual:hover{border-color:#b82f3d80;background:#54202b30}
 .ritual-copy{padding-right:20px}
