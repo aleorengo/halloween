@@ -1,0 +1,7 @@
+# Empty photographic envelope layer
+
+Tool: built-in image generation, editing the existing photographic envelope sprite. Asset: `public/images/envelope-empty-photographic.webp`. The website consumes its empty interior as the background behind the sliding invitation.
+
+## Prompt
+
+Use case: precise-object-edit. Edit target: the supplied two-panel photographic animation sprite. Make exactly ONE change: in the RIGHT panel ONLY remove the blank ivory paper invitation from the open red envelope, leaving the envelope open and empty. Inpaint the formerly paper-covered area with the physically correct real antique silver tray above the envelope mouth and the dark textured crimson envelope interior below the mouth. Retain the upward-open red triangular flap and the envelope pocket exactly as they are. Crucial invariants: preserve the original canvas dimensions 1536 by 1024, both panel boundaries, exact fixed overhead camera, scale, every object position, the silver tray contours and decorative rim, textured black background, red envelope front and folds, lighting, colour, photographic texture and real shadows. The entire LEFT closed-envelope panel must be unchanged. The right silver tray, red envelope, and background outside the removed ivory sheet must be unchanged. Do not enlarge or shrink any object. No paper remains in the right panel. No text, no extra objects. This image must align pixel-for-pixel with the supplied original because it is a background layer for an animated sliding letter.
