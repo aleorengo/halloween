@@ -165,7 +165,8 @@ body{background-color:#100e0f;background-image:linear-gradient(#100e0fad,#100e0f
 /* Optional ritual pages keep inspiration off the compact invitation. */
 [hidden]{display:none!important}
 .ritual{position:relative;transition:border-color .2s,background .2s}
-.ritual:after{content:'↗';position:absolute;right:8px;top:8px;color:var(--red);font-size:12px;line-height:1}
+.ritual-arrow{position:absolute;right:8px;top:8px;color:var(--red);width:14px;height:14px;pointer-events:none}
+.ritual-arrow svg{display:block;width:100%;height:100%}
 .ritual:hover{border-color:#b82f3d80;background:#54202b30}
 .ritual-copy{padding-right:20px}
 .inspiration{position:relative;width:calc(100% - 180px);max-width:900px;margin:0 auto;flex:1;padding:30px 0 40px}
@@ -305,4 +306,12 @@ footer{font-size:8px}footer>p{font-size:17px}
 }
 @media(max-width:350px){
  .event-address{font-size:11px}.directions{font-size:10px}.ritual h2{font-size:12px}.ritual p{font-size:10px}.food-note{font-size:9px}footer>p{font-size:12px}
+}
+.desktop-crest{display:none}
+.cocktail-title-line{display:block;white-space:nowrap}
+@media(max-width:600px){.inspo-heading .cocktail-title{font-size:clamp(25px,7.8vw,33px);margin-inline:26px}}
+@media(max-width:350px){.inspo-heading .cocktail-title{margin-inline:23px}}
+@media(min-width:601px){
+ .frame-arch{display:none}
+ .desktop-crest{display:block;position:absolute;top:12px;left:50%;transform:translateX(-50%);width:min(440px,42vw);height:auto;aspect-ratio:1024 / 350;pointer-events:none;opacity:.64}
 }

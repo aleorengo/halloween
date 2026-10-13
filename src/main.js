@@ -12,6 +12,10 @@ document.querySelector('#app').innerHTML = assetMarkup(`
   <div class="page-frame" aria-hidden="true"></div>
   <div class="frame-rails" aria-hidden="true"></div>
   <svg class="frame-arch" viewBox="0 0 1024 540" aria-hidden="true"><image href="/images/silver-botanical-frame.webp" width="1024" height="1536"/></svg>
+  <svg class="desktop-crest" viewBox="0 0 1024 350" aria-hidden="true">
+    <defs><clipPath id="desktop-crest-shape"><path d="M0 0H1024V240H930C925 270 908 300 871 320C833 346 783 332 754 303C731 282 720 258 715 236H660V220H364V220H309V236C304 258 293 282 270 303C240 332 190 346 153 320C116 300 99 270 94 240H0Z"/></clipPath></defs>
+    <image href="/images/silver-botanical-frame.webp" width="1024" height="1536" clip-path="url(#desktop-crest-shape)"/>
+  </svg>
   <svg class="frame-body" viewBox="0 116 1024 1536" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <clipPath id="vine-segment"><rect width="1024" height="768"/></clipPath>
@@ -91,9 +95,9 @@ document.querySelector('#app').innerHTML = assetMarkup(`
     <section id="rituals" class="rituals" aria-label="Three things for the party">
       <div class="ritual-header"><p>THREE LITTLE RITUALS</p><span>✦</span></div>
       <div class="ritual-grid">
-        <a class="ritual entrance" href="#inspo/cocktails" data-ritual="cocktails" aria-label="Cocktail inspiration"><div class="ritual-image"><img src="/images/cocktails.webp" alt="Amber and red Halloween cocktails"/></div><div class="ritual-copy"><h2>A Halloween <em>cocktail.</em></h2><p>Bring ingredients to mix here.<br>With or without alcohol.</p></div></a>
-        <a class="ritual entrance" href="#inspo/costumes" data-ritual="costumes" aria-label="Costume inspiration"><div class="ritual-image costume-image"><img src="/images/halloween-costume.webp" alt="A red devil costume casting a dramatic horned shadow"/></div><div class="ritual-copy"><h2>Dress <em>spooky.</em></h2><p>A Halloween costume is a must.</p></div></a>
-        <a class="ritual entrance" href="#inspo/games" data-ritual="games" aria-label="Game inspiration"><div class="ritual-image game-image"><img src="/images/halloween-game-muted.webp" alt="Tarot cards and a crystal ball in muted red light"/></div><div class="ritual-copy"><h2>A wicked <em>game.</em></h2><p>Bring one, or come with an idea.</p></div></a>
+        <a class="ritual entrance" href="#inspo/cocktails" data-ritual="cocktails" aria-label="Cocktail inspiration"><div class="ritual-image"><img src="/images/cocktails.webp" alt="Amber and red Halloween cocktails"/></div><div class="ritual-copy"><h2>A Halloween <em>cocktail.</em></h2><p>Bring ingredients to mix here.<br>With or without alcohol.</p></div><span class="ritual-arrow" aria-hidden="true">${icons.arrow}</span></a>
+        <a class="ritual entrance" href="#inspo/costumes" data-ritual="costumes" aria-label="Costume inspiration"><div class="ritual-image costume-image"><img src="/images/halloween-costume.webp" alt="A red devil costume casting a dramatic horned shadow"/></div><div class="ritual-copy"><h2>Dress <em>spooky.</em></h2><p>A Halloween costume is a must.</p></div><span class="ritual-arrow" aria-hidden="true">${icons.arrow}</span></a>
+        <a class="ritual entrance" href="#inspo/games" data-ritual="games" aria-label="Game inspiration"><div class="ritual-image game-image"><img src="/images/halloween-game-muted.webp" alt="Tarot cards and a crystal ball in muted red light"/></div><div class="ritual-copy"><h2>A wicked <em>game.</em></h2><p>Bring one, or come with an idea.</p></div><span class="ritual-arrow" aria-hidden="true">${icons.arrow}</span></a>
       </div>
       <p class="food-note"><span>✦</span> There will be food. Come hungry. <span>✦</span></p>
     </section>

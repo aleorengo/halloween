@@ -19,7 +19,7 @@ const drinks = [
 ];
 
 const pages = {
-  cocktails:{label:'Cocktails',title:'Something wicked to sip.',intro:'Bring your ingredients and assemble your cocktail here. With or without alcohol.',body:()=>`
+  cocktails:{label:'Cocktails',title:'<span class="cocktail-title-line">Something wicked</span> <span class="cocktail-title-line">to sip.</span>',intro:'Bring your ingredients and assemble your cocktail here. With or without alcohol.',body:()=>`
     <div class="cocktail-notes"><p class="cocktail-note-intro">A little theatre goes a long way.</p><ul>
       <li><strong>Change the colour.</strong> A little food colouring, berry juice or a poison-green twist.</li>
       <li><strong>Make it shimmer.</strong> Edible cocktail glitter or a sparkling sugar rim.</li>
@@ -72,7 +72,7 @@ export function setupInspiration({onLeaveInvite}) {
       inspiration.innerHTML = `
         <a class="inspo-back" href="#rituals"><span aria-hidden="true">←</span> Back to the invite</a>
         <nav class="inspo-tabs" aria-label="Ritual inspiration">${Object.entries(pages).map(([route,item])=>`<a href="#inspo/${route}" ${key===route?'aria-current="page"':''}>${item.label}</a>`).join('')}</nav>
-        <div class="inspo-heading"><p class="eyebrow">A LITTLE INSPIRATION</p><h1 id="inspiration-title" tabindex="-1">${page.title}</h1><p>${page.intro}</p></div>
+        <div class="inspo-heading"><p class="eyebrow">A LITTLE INSPIRATION</p><h1 id="inspiration-title" class="${key==='cocktails'?'cocktail-title':''}" tabindex="-1">${page.title}</h1><p>${page.intro}</p></div>
         <div class="inspo-content">${page.body()}</div>
         <a class="inspo-back inspo-back-bottom" href="#rituals"><span aria-hidden="true">←</span> Back to the invite</a>`;
       if (key === 'costumes') cleanupPage = setupCostumeGame(inspiration);

@@ -1,6 +1,6 @@
 # The Witching Hour
 
-A mobile-first Halloween invitation with photographic crimson stationery, black letterpress type, a distressed gothic headline inspired by the supplied Nocturne reference, and an antique silver botanical frame. The complete top arch retains its proportions; the side vines repeat seamlessly and stay outside the party components.
+A mobile-first Halloween invitation with photographic crimson stationery, black letterpress type, a distressed gothic headline inspired by the supplied Nocturne reference, and an antique silver botanical frame. The complete top arch retains its proportions on phones; a smaller, contoured crest sits independently above the desktop content. The side vines repeat seamlessly and stay outside the party components. Ritual links use red SVG arrows on every device.
 
 A subtle aged charcoal paper texture covers the page. The headline has a readable gothic capital A and uneven ink coverage to give it a worn printed finish.
 
