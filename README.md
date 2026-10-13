@@ -10,7 +10,7 @@ The date and time appear once, printed directly into the paper photograph, with 
 
 Each ritual opens a mobile-first inspiration page. The cocktail collage uses the supplied references, with their screenshot interface cropped out in the layout, faded colour, worn paper borders and folded or broken corners. General tips cover colour, edible glitter, syrup and candy garnishes. Guests bring ingredients to assemble their drinks here.
 
-The costume page has animated photographic ruby dice, female/male styling and 30 costume ideas per option. A shuffled deck gives every idea once before repeating; controls pause while rolling and reduced motion reveals the result immediately. Nine expandable Halloween games include setup and rules. Category links, browser history and a return link support navigation without replaying the invitation.
+The costume page has animated photographic ruby dice, female/male styling and 30 costume ideas per option. Every idea has a matching partner revealed with the couple-version button. The dice are optional inspiration; guests can bring their own costume ideas. A shuffled deck gives every idea once before repeating; controls pause while rolling and reduced motion reveals the result immediately. Nine expandable Halloween games include setup and rules. Category links, browser history and a return link support navigation without replaying the invitation.
 
 ```sh
 npm install

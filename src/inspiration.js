@@ -27,7 +27,7 @@ const pages = {
       <li><strong>Give it a haunting garnish.</strong> Candy eyes, chocolate spiders, gummy worms or a black liquorice stirrer.</li>
     </ul></div>
     <div class="cocktail-collage" aria-label="Halloween cocktail moodboard">${drinks.map(drink=>`<figure class="collage-print">${photo(`/images/cocktail-inspo-${drink.src}.webp`,drink.alt,drink.size,drink.crop)}</figure>`).join('')}</div>`},
-  costumes:{label:'Costumes',title:'Let fate dress you.',intro:'A Halloween costume is a must. Roll for a dark, daring disguise.',body:costumeGameMarkup},
+  costumes:{label:'Costumes',title:'Let fate dress you.',intro:'A Halloween costume is a must. Roll for a dark, daring disguise, or come as your best scary self. Just for fun and ideas—your own creation is welcome.',body:costumeGameMarkup},
   games:{label:'Games',title:'A little mischief.',intro:'Choose your kind of chaos. Bring a game, or come ready to start one.',body:()=>`
     <div class="party-games">${games.map(game=>`<details class="party-game" name="party-game"><summary><span><span class="game-title">${game.name}</span><span class="game-teaser">${game.teaser}</span></span><span class="game-plus" aria-hidden="true">+</span></summary><div class="game-instructions"><p class="game-meta">${game.players} · ${game.props}</p><p><strong>Set the scene.</strong> ${game.setup}</p><p><strong>How to play.</strong> ${game.play}</p></div></details>`).join('')}</div>
     <p class="inspo-tip"><span>✦</span> The best game is the one everyone gets into.</p>`},

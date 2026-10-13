@@ -52,6 +52,8 @@ export const costumeGameMarkup = () => `
     <div id="costume-result" class="costume-result" role="status" aria-live="polite" aria-atomic="true" aria-busy="false">
       <span class="costume-star" aria-hidden="true">✦</span><h2>Your alter ego awaits.</h2><p>Pick your styling. Let fate dress you.</p>
     </div>
+    <button class="reveal-couple" type="button" hidden aria-expanded="false" aria-controls="couple-result">Reveal couple version <span aria-hidden="true">✦</span></button>
+    <div id="couple-result" class="costume-result couple-result" hidden role="status" aria-live="polite" aria-atomic="true"></div>
     <p class="costume-counter">A different idea with every roll.</p>
   </section>`;
 
@@ -80,7 +82,16 @@ export function setupCostumeGame(root) {
   const counter = root.querySelector('.costume-counter');
   const label = root.querySelector('.roll-label');
   const dice = [...root.querySelectorAll('.die')];
+  const coupleButton = root.querySelector('.reveal-couple');
+  const coupleResult = root.querySelector('.couple-result');
+  let currentIdea = null;
   let timer;
+  const resetCouple = () => {
+    coupleButton.setAttribute('aria-expanded','false');
+    coupleButton.innerHTML='Reveal couple version <span aria-hidden="true">✦</span>';
+    coupleResult.hidden=true;
+    coupleResult.innerHTML='';
+  };
   const setSwitches = () => switches.forEach(item=>item.setAttribute('aria-pressed',String(item.dataset.costumeGender===state.gender)));
   setSwitches();
 
@@ -91,18 +102,34 @@ export function setupCostumeGame(root) {
     result.innerHTML='<span class="costume-star" aria-hidden="true">✦</span><h2>A new disguise?</h2><p>Roll for your next alter ego.</p>';
     counter.textContent='A different idea with every roll.';
     label.textContent='Roll the dice';
+    currentIdea=null;
+    coupleButton.hidden=true;
+    resetCouple();
   }));
+
+  coupleButton.addEventListener('click',()=>{
+    if (!currentIdea) return;
+    if (coupleButton.getAttribute('aria-expanded')==='true') { resetCouple(); return; }
+    const male = state.gender==='female';
+    coupleResult.innerHTML=`<p class="couple-eyebrow">${male?'Male':'Female'} counterpart</p><h2>${currentIdea[male?1:0]}</h2><p>${currentIdea[male?3:2]}</p><p class="costume-detail"><span>Make it haunting</span>${currentIdea[male&&currentIdea[5]?5:4]}</p>`;
+    coupleResult.hidden=false;
+    coupleButton.setAttribute('aria-expanded','true');
+    coupleButton.innerHTML='Hide couple version <span aria-hidden="true">✦</span>';
+    if (coupleResult.getBoundingClientRect().bottom>innerHeight-16) coupleResult.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  });
 
   button.addEventListener('click',()=>{
     if (button.disabled) return;
     button.disabled=true;
     switches.forEach(item=>item.disabled=true);
+    coupleButton.disabled=true;
     result.setAttribute('aria-busy','true');
     label.textContent='Summoning your alter ego…';
     button.classList.add('is-rolling');
     const finish = () => {
       const {idea,seen}=nextCostume(state.gender);
       const male=state.gender==='male';
+      currentIdea=idea;
       result.innerHTML=`<span class="costume-star" aria-hidden="true">✦</span><h2>${idea[male?1:0]}</h2><p class="costume-look">${idea[male?3:2]}</p><p class="costume-detail"><span>Make it haunting</span>${idea[male&&idea[5]?5:4]}</p>`;
       counter.textContent=`${seen} of 30 revealed · ${male?'Male':'Female'} styling`;
       dice.forEach(item=>{
@@ -113,6 +140,9 @@ export function setupCostumeGame(root) {
       switches.forEach(item=>item.disabled=false);
       result.setAttribute('aria-busy','false');
       label.textContent='Roll again';
+      resetCouple();
+      coupleButton.hidden=false;
+      coupleButton.disabled=false;
       const bounds = result.getBoundingClientRect();
       if (root.isConnected && (bounds.bottom > innerHeight-16 || bounds.top < 0)) result.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
     };

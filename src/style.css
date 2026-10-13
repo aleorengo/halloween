@@ -255,6 +255,10 @@ body{background-color:#100e0f;background-image:linear-gradient(#100e0fad,#100e0f
 .costume-result p{font-size:12px;line-height:1.8;color:var(--muted)}
 .costume-detail{margin-top:15px}.costume-detail>span{display:block;color:#d5c7b8;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
 .costume-counter{font-size:10px;line-height:1.7;color:#9d8984;margin-top:15px}
+.reveal-couple{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;min-height:44px;border:1px solid #b82f3d55;background:#64212b20;font-size:11px;color:var(--cream);padding:12px;margin-top:13px;transition:background .2s}
+.reveal-couple:hover{background:#81223140}.reveal-couple>span{color:var(--red)}.reveal-couple:disabled{cursor:wait;opacity:.5}
+.couple-result{margin-top:13px;min-height:0}
+.couple-result .couple-eyebrow{color:#bd8f90;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:15px}
 .party-games{display:grid;gap:12px;max-width:620px;margin:0 auto}
 .party-game{border:1px solid var(--line);background:#24171930}
 .party-game summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 21px;cursor:pointer;list-style:none;min-height:72px}
@@ -275,6 +279,7 @@ body{background-color:#100e0f;background-image:linear-gradient(#100e0fad,#100e0f
  .costume-switch button{font-size:11px;padding:9px 21px}.costume-promise{font-size:10px;margin-top:13px}
  .roll-costume{margin-top:10px;padding:17px 0}.roll-label{font-size:10px;letter-spacing:.7px}.dice-pair{gap:8px;width:220px}
  .costume-result{padding:19px 15px;min-height:165px}.costume-result h2{font-size:27px;margin-bottom:12px}.costume-result p{font-size:11px;line-height:1.8}.costume-detail>span{font-size:8px;letter-spacing:1.1px}.costume-counter{font-size:9px}
+ .reveal-couple{font-size:10px}.couple-result{min-height:0}.couple-result .couple-eyebrow{font-size:8px;letter-spacing:1.2px}
  .party-games{gap:10px}.party-game summary{padding:14px;gap:10px;min-height:74px}.game-title{font-size:12px}.game-teaser{font-size:10px;line-height:1.8}.game-plus{font-size:20px}
  .game-instructions{font-size:10px;line-height:1.85;padding:13px 14px 16px}.game-meta{font-size:9px;letter-spacing:.4px}
 }
