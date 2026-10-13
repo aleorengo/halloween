@@ -99,11 +99,11 @@ document.querySelector('#app').innerHTML = assetMarkup(`
         <a class="ritual entrance" href="#inspo/costumes" data-ritual="costumes" aria-label="Costume inspiration"><div class="ritual-image costume-image"><img src="/images/halloween-costume.webp" alt="A red devil costume casting a dramatic horned shadow"/></div><div class="ritual-copy"><h2>Dress <em>spooky.</em></h2><p>A Halloween costume is a must.</p></div><span class="ritual-arrow" aria-hidden="true">${icons.arrow}</span></a>
         <a class="ritual entrance" href="#inspo/games" data-ritual="games" aria-label="Game inspiration"><div class="ritual-image game-image"><img src="/images/halloween-game-muted.webp" alt="Tarot cards and a crystal ball in muted red light"/></div><div class="ritual-copy"><h2>A wicked <em>game.</em></h2><p>Bring one, or come with an idea.</p></div><span class="ritual-arrow" aria-hidden="true">${icons.arrow}</span></a>
       </div>
-      <p class="food-note"><span>✦</span> There will be food. Come hungry. <span>✦</span></p>
+      <p class="food-note"><span aria-hidden="true">✦</span><span class="food-copy">There will be food.<br>Come hungry.</span><span aria-hidden="true">✦</span></p>
     </section>
   </main>
   <main class="inspiration" hidden aria-labelledby="inspiration-title"></main>
-  <footer><span>ALL SPIRITS WELCOME</span><p>Come for the spirits. Stay for the company.</p><span>✦</span></footer>
+  <footer><span>ALL SPIRITS WELCOME</span><p>Come for the spirits.<br>Stay for the company.</p><span>✦</span></footer>
 `);
 
 const stage = document.querySelector('.letter-stage');

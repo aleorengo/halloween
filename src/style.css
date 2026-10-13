@@ -293,13 +293,14 @@ body{font-size:16px}
 .ritual h2,.game-title{font-size:18px;line-height:1.35}
 .ritual{align-items:stretch}.ritual-copy{flex:1;min-width:0;padding:16px 24px 16px 16px}
 .ritual-image{height:auto;min-height:142px}.ritual-image img{position:absolute;inset:0;height:100%}
-.food-note{white-space:normal;text-align:center}
+.food-note{white-space:normal;text-align:center;font-size:14px;line-height:1.5}
+.food-note>.food-copy{font:inherit;color:inherit}
 .inspo-tabs a{font-size:16px}.costume-counter,.game-meta{font-size:14px}
 .cocktail-note-intro{font-size:25px}.costume-detail>span{letter-spacing:1px}
 .roll-label{max-width:100%;letter-spacing:.3px;text-align:center}
 .replay{top:94%;bottom:auto;font-size:11px;letter-spacing:.8px;min-height:32px}
 .letter-stage{margin-bottom:20px}
-footer{font-size:12px}footer>p{font-size:18px}
+footer{font-size:12px}footer>p{font-size:16px;line-height:1.5;text-align:center}
 @media(max-width:600px){
  .header-note{letter-spacing:1px}.header-note i{padding-inline:6px}.eyebrow{letter-spacing:1.3px}
  .ritual{min-height:114px}.ritual-copy{padding:12px 20px 12px 12px}.ritual-image{width:64px;min-height:0}
