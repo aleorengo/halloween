@@ -283,3 +283,26 @@ body{background-color:#100e0f;background-image:linear-gradient(#100e0fad,#100e0f
  .party-games{gap:10px}.party-game summary{padding:14px;gap:10px;min-height:74px}.game-title{font-size:12px}.game-teaser{font-size:10px;line-height:1.8}.game-plus{font-size:20px}
  .game-instructions{font-size:10px;line-height:1.85;padding:13px 14px 16px}.game-meta{font-size:9px;letter-spacing:.4px}
 }
+
+/* A small readability lift for supporting copy, navigation and controls. */
+.header-note{font-size:9px}.eyebrow{font-size:10px}.event-address{font-size:13px}.event-city{font-size:8px}
+.directions{font-size:11px}.replay{font-size:8px}.ritual-header{font-size:9px}.ritual h2{font-size:16px}.ritual p{font-size:12px}.food-note{font-size:12px}
+footer{font-size:8px}footer>p{font-size:17px}
+.inspo-back{font-size:12px}.inspo-tabs a{font-size:13px}.inspo-heading>p:last-child{font-size:14px}.inspo-tip{font-size:13px}
+.cocktail-note-intro{font-size:25px}.cocktail-notes li{font-size:13px}
+.costume-switch button{font-size:13px}.costume-promise{font-size:12px}.roll-label{font-size:13px}.costume-result p{font-size:13px}
+.costume-detail>span{font-size:10px}.costume-counter{font-size:11px}.reveal-couple{font-size:12px}.couple-result .couple-eyebrow{font-size:10px}
+.game-title{font-size:15px}.game-teaser{font-size:13px}.game-instructions{font-size:13px}.game-meta{font-size:11px}
+@media(max-width:600px){
+ .header-note{font-size:7px}.eyebrow{font-size:8px}.event-address{font-size:12px}.event-city{font-size:7px}
+ .directions{font-size:11px}.replay{font-size:7px}.ritual-header{font-size:8px}.ritual h2{font-size:13px}.ritual p{font-size:11px}.food-note{font-size:10px}
+ footer{font-size:7px}footer>p{font-size:14px}
+ .inspo-back{font-size:11px}.inspo-tabs a{font-size:11px}.inspo-heading>p:last-child{font-size:12px}.inspo-tip{font-size:11px}
+ .cocktail-note-intro{font-size:19px}.cocktail-notes li{font-size:11px}
+ .costume-switch button{font-size:12px}.costume-promise{font-size:11px}.roll-label{font-size:11px}.costume-result p{font-size:12px}
+ .costume-detail>span{font-size:9px}.costume-counter{font-size:10px}.reveal-couple{font-size:11px}.couple-result .couple-eyebrow{font-size:9px}
+ .game-title{font-size:13px}.game-teaser{font-size:11px}.game-instructions{font-size:11px}.game-meta{font-size:10px}
+}
+@media(max-width:350px){
+ .event-address{font-size:11px}.directions{font-size:10px}.ritual h2{font-size:12px}.ritual p{font-size:10px}.food-note{font-size:9px}footer>p{font-size:12px}
+}
