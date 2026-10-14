@@ -1,6 +1,7 @@
 import './style.css';
 import { setupInspiration } from './inspiration.js';
 import { assetMarkup, assetUrl } from './assets.js';
+import { setupLocation } from './location.js';
 
 const icons = {
   arrow:'<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>',
@@ -50,7 +51,7 @@ document.querySelector('#app').innerHTML = assetMarkup(`
           </defs>
           <image href="/images/headline-worn-gothic-readable.webp" width="1632" height="964" filter="url(#headline-ink)"/>
         </svg></h1>
-        <div class="event-details entrance"><p class="event-address">[private location removed]</p><p class="event-city">BARCELONA</p></div>
+        <div class="event-details entrance"><p class="event-address">A private gathering</p><p class="event-city">BARCELONA</p></div>
       </div>
       <div class="letter-stage" data-state="closed" aria-busy="true">
         <div class="envelope-photo">
@@ -98,7 +99,24 @@ document.querySelector('#app').innerHTML = assetMarkup(`
         <button class="open-seal" aria-label="Open your Halloween invitation" aria-controls="invitation-date"></button>
         <button class="replay" aria-label="Replay the envelope opening animation" disabled>${icons.replay}<span>OPEN IT AGAIN</span></button>
       </div>
-      <div class="actions entrance"><a class="directions" href="[private location removed]" target="_blank" rel="noopener noreferrer">${icons.pin} Get directions ${icons.arrow}</a></div>
+      <div class="actions entrance">
+        <div class="location-control">
+          <button class="directions location-toggle" type="button" aria-expanded="false" aria-controls="private-location">${icons.pin} Unlock the location ${icons.arrow}</button>
+          <section class="location-panel" id="private-location" aria-label="Private party location" hidden>
+            <form>
+              <label for="location-password">Your invitation password</label>
+              <input id="location-password" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Shared by your host" />
+              <button class="location-submit" type="submit">Reveal location</button>
+            </form>
+            <p class="location-status" role="status" aria-live="polite"></p>
+            <div class="location-details" hidden>
+              <p class="unlocked-address"></p>
+              <a class="directions" target="_blank" rel="noopener noreferrer">${icons.pin} Get directions ${icons.arrow}</a>
+              <button class="location-lock" type="button">Hide location</button>
+            </div>
+          </section>
+        </div>
+      </div>
     </section>
     <section id="rituals" class="rituals" aria-label="Three things for the party">
       <div class="ritual-header"><p>THREE LITTLE RITUALS</p><span>✦</span></div>
@@ -113,6 +131,8 @@ document.querySelector('#app').innerHTML = assetMarkup(`
   <main class="inspiration" hidden aria-labelledby="inspiration-title"></main>
   <footer><span>ALL SPIRITS WELCOME</span><p>Come for the spirits.<br>Stay for the company.</p><span>✦</span></footer>
 `);
+
+setupLocation();
 
 const stage = document.querySelector('.letter-stage');
 const frameBody = document.querySelector('.frame-body');
