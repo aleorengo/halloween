@@ -10,6 +10,7 @@ export function setupLocation({onUnlock, onLock}) {
   const submit = form.querySelector('button');
   const status = dialog.querySelector('.location-status');
   const details = document.querySelector('.location-details');
+  const placeholder = document.querySelector('.location-placeholder');
   const address = details.querySelector('.unlocked-address');
   const directions = details.querySelector('a');
   const lock = details.querySelector('.location-lock');
@@ -21,6 +22,7 @@ export function setupLocation({onUnlock, onLock}) {
     address.textContent = '';
     directions.removeAttribute('href');
     details.hidden = true;
+    placeholder.hidden = false;
     submit.disabled = false;
     status.textContent = '';
     dialog.removeAttribute('aria-busy');
@@ -65,6 +67,7 @@ export function setupLocation({onUnlock, onLock}) {
       address.textContent = location.address;
       directions.href = location.directions;
       details.hidden = false;
+      placeholder.hidden = true;
       status.textContent = '';
       dialog.close();
       onUnlock();

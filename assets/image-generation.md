@@ -2,6 +2,8 @@
 
 All images below were made with the built-in image-generation tool, copied into this project, and served locally. Colour and material references came from the user's images.
 
+- [Engraved gothic doorway](../public/images/gothic-door-frame.webp) — [prompt](gothic-door-prompt.md), built-in image generation with the user's gothic arch and the website's silver botanical frame as references. The crown and threshold retain their proportions; the side engravings repeat at their native scale.
+
 - [Photographic envelope](../public/images/envelope-photographic.webp) — [prompt](envelope-prompt.md).
 - [Empty envelope background for the opening animation](../public/images/envelope-empty-photographic.webp) — [prompt](empty-envelope-prompt.md).
 - [Transparent silver botanical frame](../public/images/silver-botanical-frame.webp) — [prompt](frame-prompt.md).

@@ -162,35 +162,42 @@ body{background-color:#100e0f;background-image:linear-gradient(#100e0fad,#100e0f
 .ritual{position:relative;transition:border-color .2s,background .2s}
 .ritual-arrow{position:absolute;right:8px;bottom:8px;color:var(--red);width:14px;height:14px;pointer-events:none}
 .ritual-arrow svg{display:block;width:100%;height:100%}
-.actions{flex-direction:column;align-items:flex-start}
-.location-control{width:100%;max-width:340px}
-.seal-dialog{width:min(360px,calc(100% - 48px));max-height:calc(100svh - 40px);padding:30px 24px 25px;border:4px double #a29380;background:linear-gradient(#e9e1d3f2,#e3d9c7f2),url('/images/aged-charcoal-paper.webp') center/500px;color:#292124;box-shadow:0 25px 80px #0008;text-align:center}
-.seal-dialog::backdrop{background:#0b090bc4;backdrop-filter:blur(3px)}
+.seal-dialog{width:min(380px,calc(100% - 24px));max-height:calc(100svh - 24px);padding:0 0 5px;border:0;background:none;color:var(--cream);text-align:center;filter:drop-shadow(0 22px 32px #0009);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#716568 transparent}
+.seal-dialog::backdrop{background:#0b090bce;backdrop-filter:blur(3px)}
 .seal-dialog[open]{animation:seal-note-arrive .3s ease-out both}
-.seal-dialog-close{position:absolute;right:8px;top:5px;width:36px;height:36px;background:none;border:0;color:#514047;font-size:24px;padding:0}
-.seal-dialog-eyebrow{font-size:10px;letter-spacing:2px;color:#685458}
-.seal-dialog-star{display:block;color:#952737;font-size:17px;margin:17px 0 10px}
-.seal-dialog h2{font:400 38px/1.1 Witchcraft,Georgia,serif;color:#292124}
-#seal-dialog-description{font:italic 20px/1.25 Cormorant,Georgia,serif;color:#655258;margin:12px 0 24px}
+.door-crown,.door-foot{display:block;width:100%;height:auto;flex-shrink:0;overflow:hidden}
+.door-crown{aspect-ratio:1024 / 640}.door-foot{aspect-ratio:1024 / 176}
+.door-crown image,.door-jambs,.door-foot image{opacity:.86}
+.seal-door-body{position:relative;margin:0;padding:8px 18% 18px;background:none}
+.seal-door-body:before{content:'';position:absolute;inset:0 8.5%;background:linear-gradient(#171317ed,#171317ed),url('/images/aged-charcoal-paper.webp') center/360px;pointer-events:none}
+.door-jambs{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.seal-door-body>:not(.door-jambs){position:relative}
+.seal-dialog-close{position:absolute;z-index:2;right:8px;top:80px;width:36px;height:36px;background:#171317;border:1px solid #aaa69655;border-radius:50%;color:#c7bfb1;font-size:24px;padding:0;line-height:1}
+.seal-dialog-eyebrow{font-size:10px;letter-spacing:1.5px;color:#aba294;margin-bottom:14px}
+.seal-dialog-star{display:none}
+.seal-dialog h2{font:400 clamp(30px,9.74vw,38px)/1.1 Witchcraft,Georgia,serif;color:var(--cream)}
+#seal-dialog-description{font:italic 18px/1.25 Cormorant,Georgia,serif;color:#b9aaa0;margin:12px 0 18px}
 .seal-dialog form{display:grid;gap:11px;text-align:left}
-.seal-dialog label{font-size:13px;line-height:1.3;color:#655258}
-.seal-dialog input{width:100%;min-width:0;min-height:46px;padding:12px 10px;background:#fff7;border:1px solid #8e747780;border-radius:0;color:#292124;font:inherit;font-size:16px}
-.seal-dialog input::placeholder{color:#7a6870;font-size:13px}
-.seal-dialog input:focus-visible{outline:1px solid #952737;outline-offset:2px}
-.seal-dialog button:focus-visible{outline-color:#952737}
-.location-submit{display:flex;align-items:center;justify-content:center;gap:12px;min-height:46px;border:1px solid #78222f;background:#8e2535;color:#f1e6d6;font-size:16px;padding:11px}
+.seal-dialog label{font-size:13px;line-height:1.3;color:#b9aaa0}
+.seal-dialog input{width:100%;min-width:0;min-height:46px;padding:12px 10px;background:#08070977;border:1px solid #a49a8b66;border-radius:0;color:var(--cream);font:inherit;font-size:16px;box-shadow:inset 0 2px 9px #0004}
+.seal-dialog input::placeholder{color:#9d9088;font-size:13px}
+.seal-dialog input:focus-visible{outline:1px solid #c65363;outline-offset:2px}
+.seal-dialog button:focus-visible{outline-color:#c65363}
+.location-submit{display:flex;align-items:center;justify-content:center;gap:12px;min-height:46px;border:1px solid #bd596777;background:linear-gradient(135deg,#8f2839,#6e192b);color:#f1e6d6;font-size:16px;padding:11px;box-shadow:inset 0 0 0 2px #29131a66}
 .location-submit svg{width:14px;height:14px}
 .location-submit:disabled{opacity:.6;cursor:wait}
-.location-status{font-size:13px;line-height:1.35;color:#78222f}
+.location-status{font-size:13px;line-height:1.35;color:#dd9a9d}
 .location-status:not(:empty){margin-top:12px}
-.unlocked-address{font-size:16px;line-height:1.4;margin-bottom:10px;overflow-wrap:anywhere}
-.location-lock{display:block;background:none;border:0;color:var(--muted);font-size:13px;min-height:36px;padding:8px 0;margin-top:8px}
-.hero{grid-template-rows:1fr auto auto}.event-details{grid-column:1;grid-row:2;padding-left:10px}.actions{grid-row:3}.letter-stage{grid-row:1 / span 3}
+.location-details{max-width:340px;margin-inline:auto;text-align:center;padding-top:13px}
+.location-details .directions{width:max-content;max-width:100%;margin-inline:auto;justify-content:center}
+.unlocked-address{font-size:16px;line-height:1.4;margin-top:12px;overflow-wrap:anywhere;color:var(--muted)}
+.location-lock{display:block;background:none;border:0;color:var(--muted);font-size:13px;min-height:36px;padding:8px 0;margin:8px auto 0}
+.hero{grid-template-rows:1fr auto}.event-details{grid-column:1;grid-row:2;padding-left:10px;max-width:430px;width:100%;text-align:center}.letter-stage{grid-row:1 / span 2}
 .seal-hint{position:absolute;z-index:5;top:94%;left:50%;transform:translateX(-50%);background:none;border:0;color:var(--muted);min-height:32px;font-size:11px;letter-spacing:.8px;white-space:nowrap;padding:0}
 .letter-stage.is-unlocked .seal-hint{display:none}
 .letter-stage:not(.is-loaded) .seal-hint{visibility:hidden}
 @keyframes seal-note-arrive{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
-@media(max-width:600px){.actions{align-items:center;width:100%}.location-control{width:calc(100% - 52px)}.event-details{padding:0;text-align:center;width:100%}.location-details .directions{width:max-content;margin-inline:auto}}
+@media(max-width:600px){.event-details{padding:0;width:100%}.location-details{width:calc(100% - 52px)}}
 @media(prefers-reduced-motion:reduce){.letter-stage:not(.is-unlocked) .photo-paper{opacity:0;transform:translateY(165px)}.letter-stage:not(.is-unlocked) :is(.closed-tray,.photo-flap){opacity:1;visibility:visible}}
 .ritual:hover{border-color:#b82f3d80;background:#54202b30}
 .ritual-copy{padding-right:20px}

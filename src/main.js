@@ -40,7 +40,7 @@ document.querySelector('#app').innerHTML = assetMarkup(`
             <filter id="headline-ink" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
               <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 0"/>
               <feComponentTransfer><feFuncR type="discrete" tableValues="0 0 1 1"/><feFuncG type="discrete" tableValues="0 0 1 1"/><feFuncB type="discrete" tableValues="0 0 1 1"/></feComponentTransfer>
-              <feColorMatrix type="matrix" values=".204 0 0 0 .706 .639 0 0 0 .231 .518 0 0 0 .286 0 0 0 1 0" result="clean-ink"/>
+              <feColorMatrix type="matrix" values=".298 0 0 0 .612 .721 0 0 0 .149 .604 0 0 0 .200 0 0 0 1 0" result="clean-ink"/>
               <feMorphology in="SourceAlpha" operator="erode" radius="1.5" result="ink-interior"/>
               <feComposite in="SourceAlpha" in2="ink-interior" operator="arithmetic" k2=".55" k3=".45" result="soft-edges"/>
               <feComposite in="clean-ink" in2="soft-edges" operator="in" result="edge-faded-ink"/>
@@ -99,14 +99,14 @@ document.querySelector('#app').innerHTML = assetMarkup(`
         <button class="seal-hint" type="button" aria-controls="seal-dialog" disabled>Tap the seal to open</button>
         <button class="replay" aria-label="Replay the envelope opening animation" disabled>${icons.replay}<span>OPEN IT AGAIN</span></button>
       </div>
-      <div class="event-details entrance"><p class="event-address">A private gathering</p><p class="event-city">BARCELONA</p></div>
-      <div class="actions entrance">
-        <div class="location-control">
-            <div class="location-details" hidden>
-              <p class="unlocked-address"></p>
-              <a class="directions" target="_blank" rel="noopener noreferrer">${icons.pin} Get directions ${icons.arrow}</a>
-              <button class="location-lock" type="button">Seal it again</button>
-            </div>
+      <div class="event-details entrance">
+        <div class="location-placeholder">
+          <p class="event-address">A private gathering</p><p class="event-city">BARCELONA</p>
+        </div>
+        <div class="location-details" hidden>
+          <a class="directions" target="_blank" rel="noopener noreferrer">${icons.pin} Get directions ${icons.arrow}</a>
+          <p class="unlocked-address"></p>
+          <button class="location-lock" type="button">Seal it again</button>
         </div>
       </div>
     </section>
@@ -124,16 +124,37 @@ document.querySelector('#app').innerHTML = assetMarkup(`
   <footer><span>ALL SPIRITS WELCOME</span><p>Come for the spirits.<br>Stay for the company.</p><span>✦</span></footer>
   <dialog class="seal-dialog" id="seal-dialog" aria-labelledby="seal-dialog-title" aria-describedby="seal-dialog-description">
     <button class="seal-dialog-close" type="button" aria-label="Close passphrase prompt">×</button>
+    <svg class="door-crown" viewBox="0 0 1024 640" aria-hidden="true">
+      <path d="M100 640C100 435 250 140 512 16C774 140 924 435 924 640Z" fill="#171317"/>
+      <image href="/images/gothic-door-frame.webp" width="1024" height="1536"/>
+    </svg>
+    <div class="seal-door-body">
+      <svg class="door-jambs" viewBox="0 0 1024 720" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <clipPath id="door-column-segment"><rect width="1024" height="460"/></clipPath>
+          <pattern id="door-columns" width="1024" height="920" patternUnits="userSpaceOnUse">
+            <g clip-path="url(#door-column-segment)"><image href="/images/gothic-door-frame.webp" y="-640" width="1024" height="1536"/></g>
+            <g transform="translate(0 920) scale(1 -1)"><g clip-path="url(#door-column-segment)"><image href="/images/gothic-door-frame.webp" y="-640" width="1024" height="1536"/></g></g>
+          </pattern>
+          <mask id="door-column-edges"><rect width="210" height="10000" fill="white"/><rect x="814" width="210" height="10000" fill="white"/></mask>
+        </defs>
+        <rect width="1024" height="10000" fill="url(#door-columns)" mask="url(#door-column-edges)"/>
+      </svg>
     <p class="seal-dialog-eyebrow">FOR INVITED SPIRITS</p>
     <span class="seal-dialog-star" aria-hidden="true">✦</span>
     <h2 id="seal-dialog-title">Break the seal.</h2>
-    <p id="seal-dialog-description">Six words. One wicked little night.</p>
+    <p id="seal-dialog-description">Six words.<br>One wicked little night.</p>
     <form>
       <label for="location-password">Your secret passphrase</label>
-      <input id="location-password" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="The words shared by your host" />
+      <input id="location-password" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Your six secret words" />
       <button class="location-submit" type="submit">Open my invitation ${icons.arrow}</button>
     </form>
     <p class="location-status" role="status" aria-live="polite"></p>
+    </div>
+    <svg class="door-foot" viewBox="0 1360 1024 176" aria-hidden="true">
+      <rect x="100" y="1360" width="824" height="140" fill="#171317"/>
+      <image href="/images/gothic-door-frame.webp" width="1024" height="1536"/>
+    </svg>
   </dialog>
 `);
 
@@ -143,6 +164,11 @@ new ResizeObserver(() => {
   const {width, height} = frameBody.getBoundingClientRect();
   if (width > 0 && height > 0) frameBody.setAttribute('viewBox', `0 116 1024 ${height * 1024 / width}`);
 }).observe(frameBody);
+const doorBody = document.querySelector('.seal-door-body');
+new ResizeObserver(() => {
+  const {width, height} = doorBody.getBoundingClientRect();
+  if (width > 0 && height > 0) document.querySelector('.door-jambs').setAttribute('viewBox', `0 0 1024 ${height * 1024 / width}`);
+}).observe(doorBody);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const replay = document.querySelector('.replay');
 const seal = document.querySelector('.open-seal');
