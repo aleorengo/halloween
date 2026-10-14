@@ -53,40 +53,48 @@ document.querySelector('#app').innerHTML = assetMarkup(`
         <div class="event-details entrance"><p class="event-address">[private location removed]</p><p class="event-city">BARCELONA</p></div>
       </div>
       <div class="letter-stage" data-state="closed" aria-busy="true">
-        <svg class="envelope-photo" viewBox="0 115 768 768" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <clipPath id="photo-frame"><rect x="0" y="115" width="768" height="768"/></clipPath>
-            <clipPath id="paper-shape"><path d="M157 276H612V420L441 570H320L157 420Z"/></clipPath>
-            <clipPath id="closed-envelope-shape"><rect x="125" y="331" width="520" height="380"/><path d="M258 277 385 176 511 277Z"/></clipPath>
-            <clipPath id="flap-shape"><path d="M131 333H641Q636 357 621 372L385 552 150 373Q134 359 131 333Z"/></clipPath>
-            <clipPath id="seal-shape"><ellipse cx="385" cy="545" rx="57" ry="60"/></clipPath>
-            <mask id="without-seal" maskUnits="userSpaceOnUse" x="0" y="0" width="768" height="1024"><rect width="768" height="1024" fill="white"/><ellipse cx="385" cy="545" rx="57" ry="60" fill="black"/></mask>
-            <mask id="without-closed-flap" maskUnits="userSpaceOnUse" x="0" y="0" width="768" height="1024"><rect width="768" height="1024" fill="white"/><path d="M131 333H641Q636 357 621 372L385 552 150 373Q134 359 131 333Z" fill="black"/><ellipse cx="385" cy="545" rx="57" ry="60" fill="black"/></mask>
-            <pattern id="crimson-lining" patternUnits="userSpaceOnUse" width="455" height="76"><image href="/images/envelope-photographic.webp" x="-160" y="-625" width="1536" height="1024"/></pattern>
-            <mask id="envelope-front" maskUnits="userSpaceOnUse" x="0" y="0" width="768" height="1024">
-              <rect width="768" height="1024" fill="white"/>
-              <path d="M156 275H613V421L441 571H319L156 421Z" fill="black"/>
-            </mask>
-          </defs>
-          <g clip-path="url(#photo-frame)">
-            <image class="photo-underlay" href="/images/envelope-empty-photographic.webp" x="-768" y="0" width="1536" height="1024" aria-hidden="true"/>
-            <g class="photo-paper">
-              <image class="printed-paper" href="/images/envelope-letterpress-simple.webp" x="-768" y="0" width="1536" height="1024" clip-path="url(#paper-shape)" aria-hidden="true"/>
-              <foreignObject x="157" y="276" width="455" height="294">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="letter-print letter-copy-accessible">
-                  <p class="letter-heading silver-emboss">You’re invited</p>
-                  <p id="invitation-date" class="letter-date silver-emboss">25 <span>Oct</span></p>
-                  <p class="letter-time silver-emboss"><span>Sunday</span><span class="time-divider" aria-hidden="true">·</span><span>19.30</span></p>
-                </div>
-              </foreignObject>
+        <div class="envelope-photo">
+          <svg class="envelope-scene" viewBox="0 115 768 768" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="photo-frame"><rect x="0" y="115" width="768" height="768"/></clipPath>
+              <clipPath id="paper-shape"><path d="M157 276H612V420L441 570H320L157 420Z"/></clipPath>
+              <mask id="envelope-front" maskUnits="userSpaceOnUse" x="0" y="0" width="768" height="1024">
+                <rect width="768" height="1024" fill="white"/>
+                <path d="M156 272H613V421L441 571H319L156 421Z" fill="black"/>
+              </mask>
+            </defs>
+            <g clip-path="url(#photo-frame)">
+              <image class="photo-underlay" href="/images/envelope-empty-photographic.webp" x="-768" y="0" width="1536" height="1024" aria-hidden="true"/>
+              <g class="photo-paper">
+                <image class="printed-paper" href="/images/envelope-letterpress-simple.webp" x="-768" y="0" width="1536" height="1024" clip-path="url(#paper-shape)" aria-hidden="true"/>
+                <foreignObject x="157" y="276" width="455" height="294">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="letter-print letter-copy-accessible">
+                    <p class="letter-heading silver-emboss">You’re invited</p>
+                    <p id="invitation-date" class="letter-date silver-emboss">25 <span>Oct</span></p>
+                    <p class="letter-time silver-emboss"><span>Sunday</span><span class="time-divider" aria-hidden="true">·</span><span>19.30</span></p>
+                  </div>
+                </foreignObject>
+              </g>
+              <image class="photo-front" href="/images/envelope-photographic.webp" x="-768" y="0" width="1536" height="1024" mask="url(#envelope-front)" aria-hidden="true"/>
+              <image class="closed-tray" href="/images/envelope-sealed-tray.webp" x="138" y="152" width="494" height="218" aria-hidden="true"/>
             </g>
-            <image class="photo-front" href="/images/envelope-photographic.webp" x="-768" y="0" width="1536" height="1024" mask="url(#envelope-front)" aria-hidden="true"/>
-            <image class="photo-closed-backdrop" href="/images/envelope-photographic.webp" width="1536" height="1024" aria-hidden="true"/>
-            <image class="photo-closed" href="/images/envelope-photographic.webp" x="0" y="0" width="1536" height="1024" clip-path="url(#closed-envelope-shape)" mask="url(#without-closed-flap)" aria-hidden="true"/>
-            <g class="photo-flap" clip-path="url(#flap-shape)" aria-hidden="true"><image href="/images/envelope-photographic.webp" x="0" y="0" width="1536" height="1024" mask="url(#without-seal)"/><ellipse cx="385" cy="545" rx="57" ry="60" fill="url(#crimson-lining)"/></g>
-            <image class="photo-seal" href="/images/envelope-photographic.webp" x="0" y="0" width="1536" height="1024" clip-path="url(#seal-shape)" aria-hidden="true"/>
-          </g>
-        </svg>
+          </svg>
+          <div class="photo-flap" aria-hidden="true">
+            <div class="flap-face flap-outside"><svg viewBox="0 115 768 768" xmlns="http://www.w3.org/2000/svg">
+              <image href="/images/envelope-sealed-flap.webp" x="122" y="360" width="528" height="336"/>
+            </svg></div>
+            <div class="flap-face flap-inside"><svg viewBox="0 115 768 768" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <clipPath id="open-flap-shape"><path d="M384 162 145 370H624Z"/></clipPath>
+                <mask id="open-flap-front" maskUnits="userSpaceOnUse" x="0" y="0" width="768" height="1024"><rect width="768" height="1024" fill="white"/><path d="M156 272H613V421L441 571H319L156 421Z" fill="black"/></mask>
+              </defs>
+              <g clip-path="url(#open-flap-shape)">
+                <image href="/images/envelope-empty-photographic.webp" x="-768" width="1536" height="1024"/>
+                <image href="/images/envelope-photographic.webp" x="-768" width="1536" height="1024" mask="url(#open-flap-front)"/>
+              </g>
+            </svg></div>
+          </div>
+        </div>
         <button class="open-seal" aria-label="Open your Halloween invitation" aria-controls="invitation-date"></button>
         <button class="replay" aria-label="Replay the envelope opening animation" disabled>${icons.replay}<span>OPEN IT AGAIN</span></button>
       </div>
@@ -152,18 +160,19 @@ document.querySelector('.photo-paper').addEventListener('animationend', event =>
 });
 reducedMotion.addEventListener('change', event => { if (event.matches) finishOpening(); });
 
-const photograph = new Image();
-photograph.src = assetUrl('/images/envelope-photographic.webp');
-const emptyPhotograph = new Image();
-emptyPhotograph.src = assetUrl('/images/envelope-empty-photographic.webp');
-const printedPhotograph = new Image();
-printedPhotograph.src = assetUrl('/images/envelope-letterpress-simple.webp');
-const headline = new Image();
-headline.src = assetUrl('/images/headline-worn-gothic-readable.webp');
-Promise.all([photograph.decode(), emptyPhotograph.decode(), printedPhotograph.decode(), headline.decode(), document.fonts.ready]).then(() => {
+const decodePhoto = path => {
+  const image = new Image();
+  image.src = assetUrl(path);
+  return image.decode();
+};
+const photos = ['envelope-photographic', 'envelope-empty-photographic', 'envelope-sealed-flap', 'envelope-sealed-tray', 'envelope-letterpress-simple', 'headline-worn-gothic-readable'];
+// The sealed envelope is layered from several photos, so it stays hidden until all of them can be drawn together.
+const revealEnvelope = () => stage.classList.add('is-loaded');
+Promise.all([...photos.map(name => decodePhoto(`/images/${name}.webp`)), document.fonts.ready]).then(() => {
+  revealEnvelope();
   if (reducedMotion.matches) { finishOpening(); return; }
   // Wait for the photo and fonts before showing the sealed opening moment.
   if (stage.dataset.state === 'closed') openingTimer = setTimeout(openEnvelope, 700);
-}).catch(finishOpening);
+}).catch(() => { revealEnvelope(); finishOpening(); });
 
 setupInspiration({onLeaveInvite:finishOpening});
