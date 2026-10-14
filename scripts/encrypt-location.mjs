@@ -1,5 +1,5 @@
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
-import {randomBytes} from 'node:crypto';
+import {randomInt} from 'node:crypto';
 import {resolve, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {encryptLocation} from '../src/location-crypto.js';
@@ -15,7 +15,11 @@ let password;
 try { password = (await readFile(passwordPath, 'utf8')).trim(); }
 catch (error) {
   if (error.code !== 'ENOENT') throw error;
-  password = randomBytes(18).toString('base64url').match(/.{1,6}/g).join('-');
+  // Six independent, unbiased selections from EFF's 7,776-word list.
+  const wordlist = await readFile(new URL('./data/eff-large-wordlist.txt', import.meta.url), 'utf8');
+  const words = wordlist.trim().split(/\r?\n/).map(line => line.trim().split(/\s+/)[1]);
+  if (words.length !== 7776 || new Set(words).size !== 7776) throw new Error('Invalid passphrase wordlist.');
+  password = Array.from({length: 6}, () => words[randomInt(words.length)]).join(' ');
   await mkdir(dirname(resolve(passwordPath)), {recursive: true, mode: 0o700});
   await writeFile(passwordPath, password + '\n', {mode: 0o600, flag: 'wx'});
 }

@@ -40,7 +40,7 @@ document.querySelector('#app').innerHTML = assetMarkup(`
             <filter id="headline-ink" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
               <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 0"/>
               <feComponentTransfer><feFuncR type="discrete" tableValues="0 0 1 1"/><feFuncG type="discrete" tableValues="0 0 1 1"/><feFuncB type="discrete" tableValues="0 0 1 1"/></feComponentTransfer>
-              <feColorMatrix type="matrix" values=".353 0 0 0 .557 .725 0 0 0 .145 .616 0 0 0 .188 0 0 0 1 0" result="clean-ink"/>
+              <feColorMatrix type="matrix" values=".204 0 0 0 .706 .639 0 0 0 .231 .518 0 0 0 .286 0 0 0 1 0" result="clean-ink"/>
               <feMorphology in="SourceAlpha" operator="erode" radius="1.5" result="ink-interior"/>
               <feComposite in="SourceAlpha" in2="ink-interior" operator="arithmetic" k2=".55" k3=".45" result="soft-edges"/>
               <feComposite in="clean-ink" in2="soft-edges" operator="in" result="edge-faded-ink"/>
@@ -51,7 +51,6 @@ document.querySelector('#app').innerHTML = assetMarkup(`
           </defs>
           <image href="/images/headline-worn-gothic-readable.webp" width="1632" height="964" filter="url(#headline-ink)"/>
         </svg></h1>
-        <div class="event-details entrance"><p class="event-address">A private gathering</p><p class="event-city">BARCELONA</p></div>
       </div>
       <div class="letter-stage" data-state="closed" aria-busy="true">
         <div class="envelope-photo">
@@ -66,7 +65,7 @@ document.querySelector('#app').innerHTML = assetMarkup(`
             </defs>
             <g clip-path="url(#photo-frame)">
               <image class="photo-underlay" href="/images/envelope-empty-photographic.webp" x="-768" y="0" width="1536" height="1024" aria-hidden="true"/>
-              <g class="photo-paper">
+              <g class="photo-paper" aria-hidden="true">
                 <image class="printed-paper" href="/images/envelope-letterpress-simple.webp" x="-768" y="0" width="1536" height="1024" clip-path="url(#paper-shape)" aria-hidden="true"/>
                 <foreignObject x="157" y="276" width="455" height="294">
                   <div xmlns="http://www.w3.org/1999/xhtml" class="letter-print letter-copy-accessible">
@@ -96,25 +95,18 @@ document.querySelector('#app').innerHTML = assetMarkup(`
             </svg></div>
           </div>
         </div>
-        <button class="open-seal" aria-label="Open your Halloween invitation" aria-controls="invitation-date"></button>
+        <button class="open-seal" aria-label="Unlock your Halloween invitation" aria-controls="seal-dialog" disabled></button>
+        <button class="seal-hint" type="button" aria-controls="seal-dialog" disabled>Tap the seal to open</button>
         <button class="replay" aria-label="Replay the envelope opening animation" disabled>${icons.replay}<span>OPEN IT AGAIN</span></button>
       </div>
+      <div class="event-details entrance"><p class="event-address">A private gathering</p><p class="event-city">BARCELONA</p></div>
       <div class="actions entrance">
         <div class="location-control">
-          <button class="directions location-toggle" type="button" aria-expanded="false" aria-controls="private-location">${icons.pin} Unlock the location ${icons.arrow}</button>
-          <section class="location-panel" id="private-location" aria-label="Private party location" hidden>
-            <form>
-              <label for="location-password">Your invitation password</label>
-              <input id="location-password" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Shared by your host" />
-              <button class="location-submit" type="submit">Reveal location</button>
-            </form>
-            <p class="location-status" role="status" aria-live="polite"></p>
             <div class="location-details" hidden>
               <p class="unlocked-address"></p>
               <a class="directions" target="_blank" rel="noopener noreferrer">${icons.pin} Get directions ${icons.arrow}</a>
-              <button class="location-lock" type="button">Hide location</button>
+              <button class="location-lock" type="button">Seal it again</button>
             </div>
-          </section>
         </div>
       </div>
     </section>
@@ -130,9 +122,20 @@ document.querySelector('#app').innerHTML = assetMarkup(`
   </main>
   <main class="inspiration" hidden aria-labelledby="inspiration-title"></main>
   <footer><span>ALL SPIRITS WELCOME</span><p>Come for the spirits.<br>Stay for the company.</p><span>✦</span></footer>
+  <dialog class="seal-dialog" id="seal-dialog" aria-labelledby="seal-dialog-title" aria-describedby="seal-dialog-description">
+    <button class="seal-dialog-close" type="button" aria-label="Close passphrase prompt">×</button>
+    <p class="seal-dialog-eyebrow">FOR INVITED SPIRITS</p>
+    <span class="seal-dialog-star" aria-hidden="true">✦</span>
+    <h2 id="seal-dialog-title">Break the seal.</h2>
+    <p id="seal-dialog-description">Six words. One wicked little night.</p>
+    <form>
+      <label for="location-password">Your secret passphrase</label>
+      <input id="location-password" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="The words shared by your host" />
+      <button class="location-submit" type="submit">Open my invitation ${icons.arrow}</button>
+    </form>
+    <p class="location-status" role="status" aria-live="polite"></p>
+  </dialog>
 `);
-
-setupLocation();
 
 const stage = document.querySelector('.letter-stage');
 const frameBody = document.querySelector('.frame-body');
@@ -143,14 +146,18 @@ new ResizeObserver(() => {
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const replay = document.querySelector('.replay');
 const seal = document.querySelector('.open-seal');
+const sealHint = document.querySelector('.seal-hint');
+let invitationUnlocked = false;
 let openingTimer;
 let openingFrame;
 let restoreReplayFocus = false;
 
 function finishOpening() {
+  if (!invitationUnlocked) return;
   clearTimeout(openingTimer);
   cancelAnimationFrame(openingFrame);
   stage.dataset.state = 'opened';
+  document.querySelector('.photo-paper').removeAttribute('aria-hidden');
   stage.setAttribute('aria-busy', 'false');
   replay.disabled = false;
   seal.disabled = true;
@@ -159,6 +166,7 @@ function finishOpening() {
 }
 
 function openEnvelope() {
+  if (!invitationUnlocked) return;
   if (stage.dataset.state === 'opening') return;
   clearTimeout(openingTimer);
   cancelAnimationFrame(openingFrame);
@@ -173,12 +181,28 @@ function openEnvelope() {
     openingFrame = requestAnimationFrame(() => { stage.dataset.state = 'opening'; });
   });
 }
-seal.addEventListener('click', openEnvelope);
 replay.addEventListener('click', openEnvelope);
 document.querySelector('.photo-paper').addEventListener('animationend', event => {
   if (event.animationName === 'slidePhotographicPaper') finishOpening();
 });
-reducedMotion.addEventListener('change', event => { if (event.matches) finishOpening(); });
+reducedMotion.addEventListener('change', event => { if (event.matches && invitationUnlocked) finishOpening(); });
+
+setupLocation({
+  onUnlock: () => { invitationUnlocked = true; stage.classList.add('is-unlocked'); openEnvelope(); },
+  onLock: () => {
+    invitationUnlocked = false;
+    clearTimeout(openingTimer);
+    cancelAnimationFrame(openingFrame);
+    restoreReplayFocus = false;
+    stage.classList.remove('is-unlocked');
+    stage.dataset.state = 'closed';
+    document.querySelector('.photo-paper').setAttribute('aria-hidden', 'true');
+    stage.setAttribute('aria-busy', 'false');
+    replay.disabled = true;
+    seal.disabled = !stage.classList.contains('is-loaded');
+    sealHint.disabled = seal.disabled;
+  },
+});
 
 const decodePhoto = path => {
   const image = new Image();
@@ -187,12 +211,15 @@ const decodePhoto = path => {
 };
 const photos = ['envelope-photographic', 'envelope-empty-photographic', 'envelope-sealed-flap', 'envelope-sealed-tray', 'envelope-letterpress-simple', 'headline-worn-gothic-readable'];
 // The sealed envelope is layered from several photos, so it stays hidden until all of them can be drawn together.
-const revealEnvelope = () => stage.classList.add('is-loaded');
+const revealEnvelope = () => {
+  stage.classList.add('is-loaded');
+  stage.setAttribute('aria-busy', 'false');
+  seal.disabled = false;
+  sealHint.disabled = false;
+};
 Promise.all([...photos.map(name => decodePhoto(`/images/${name}.webp`)), document.fonts.ready]).then(() => {
   revealEnvelope();
-  if (reducedMotion.matches) { finishOpening(); return; }
-  // Wait for the photo and fonts before showing the sealed opening moment.
-  if (stage.dataset.state === 'closed') openingTimer = setTimeout(openEnvelope, 700);
-}).catch(() => { revealEnvelope(); finishOpening(); });
+  // The invitation stays sealed until the location has been successfully decrypted.
+}).catch(revealEnvelope);
 
 setupInspiration({onLeaveInvite:finishOpening});
